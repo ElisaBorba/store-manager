@@ -2,9 +2,6 @@ const { productsModel } = require('../models');
 
 const getAllProducts = async () => {
   const products = await productsModel.getProducts();
-  if (!products) {
-    return { status: 'NOT_FOUND', data: { message: 'Products not found' } };
-  }
   return { status: 'SUCCESS', data: products };
 };
 

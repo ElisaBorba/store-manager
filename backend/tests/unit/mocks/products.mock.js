@@ -13,12 +13,48 @@ const allProductsFromModel = [
   },
 ];
 
-const getSingleProductFromModel = {
+const getProductByIdFromModel = {
   id: 1,
   name: 'Martelo de Thor',
 };
 
+// const serviceCreated = {
+//   status: 'CREATED',
+//   data: productFromModel,
+// };
+
+const serviceSuccessAllProducts = {
+  status: 'SUCCESS',
+  data: allProductsFromModel,
+};
+
+const serviceSuccessProductById = {
+  status: 'SUCCESS',
+  data: getProductByIdFromModel,
+};
+
+const serviceNotFound = {
+  status: 'NOT_FOUND',
+  data: { message: 'message' },
+};
+
+const serviceConflict = {
+  status: 'CONFLICT',
+  data: { message: 'message' },
+};
+
+const serviceInvalidValue = {
+  status: 'INVALID_VALUE',
+  data: { message: 'message' },
+};
+
 module.exports = {
   allProductsFromModel,
-  getSingleProductFromModel,
+  getProductByIdFromModel,
+  // serviceCreated,
+  serviceSuccessProductById,
+  serviceSuccessAllProducts,
+  serviceNotFound,
+  serviceConflict,
+  serviceInvalidValue,
 };

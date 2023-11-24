@@ -3,9 +3,9 @@ const sinon = require('sinon');
 const connection = require('../../../src/models/connection');
 const { productsModel } = require('../../../src/models');
 
-const { allProductsFromModel, getSingleProductFromModel } = require('../mocks/products.mock');
+const { allProductsFromModel, getProductByIdFromModel } = require('../mocks/products.mock');
   
-describe('Realizando testes de Products MODEL:', function () {
+describe('Realizando testes de Products - MODEL:', function () {
   it('Recuperando todos os produtos com sucesso', async function () {
     sinon.stub(connection, 'execute').resolves([allProductsFromModel]);
 
@@ -16,13 +16,13 @@ describe('Realizando testes de Products MODEL:', function () {
   });
 
   it('Recuperando um produto específico pelo seu ID com sucesso', async function () {
-    sinon.stub(connection, 'execute').resolves([[getSingleProductFromModel]]);
+    sinon.stub(connection, 'execute').resolves([[getProductByIdFromModel]]);
 
     const INPUT_ID = 1;
     const product = await productsModel.getSingleProduct(INPUT_ID);
   
     expect(product).to.be.an('object');
-    expect(product).to.be.deep.equal(getSingleProductFromModel);
+    expect(product).to.be.deep.equal(getProductByIdFromModel);
   });
   
   afterEach(function () {
