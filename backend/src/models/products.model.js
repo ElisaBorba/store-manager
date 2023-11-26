@@ -1,10 +1,7 @@
 const connection = require('./connection');
 
 const getProducts = async () => {
-  const [products] = await connection.execute(
-    'SELECT * FROM products',
-  );
-
+  const [products] = await connection.execute('SELECT * FROM products');
   return products;
 };
 
@@ -17,9 +14,7 @@ const insertProduct = async (valueName) => {
   const query = 'INSERT INTO products (name) VALUES (?);';
   const [result] = await connection.execute(query, [valueName]);
  
-  const insertedProductId = result.insertId;
- 
-  return { id: insertedProductId, name: valueName };
+  return { id: result.insertId, name: valueName };
 };
 
 module.exports = {

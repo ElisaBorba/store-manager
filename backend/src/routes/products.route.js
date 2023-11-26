@@ -1,11 +1,11 @@
 const route = require('express').Router();
-
+const validateName = require('../middlewares/validateProductField');
 const { productsController } = require('../controllers');
 
 route.get('/', productsController.allProducts);
 
 route.get('/:id', productsController.productById);
 
-route.post('/', productsController.addProduct);
+route.post('/', validateName, productsController.addProduct);
   
 module.exports = route;
