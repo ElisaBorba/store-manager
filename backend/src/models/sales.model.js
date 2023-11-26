@@ -31,7 +31,23 @@ ORDER BY s.id, productId;`, [saleId]);
   return sale;
 };
 
+const insertSales = async (itemsSold) => {
+  const [result] = await connection.execute('INSERT INTO sales (date) VALUES (NOW())');
+  const id = result.insertId;
+
+  await Promise.all(
+    itemsSold.map(async ({ productId, quantity }) => {
+      await connection
+        .execute(`INSERT INTO sales_products(sale_id, product_id, quantity)
+        VALUES (?, ?, ?)`, [id, productId, quantity]);
+    }),
+  );
+
+  return { id, itemsSold };
+};
+
 module.exports = {
   getSales,
   getSingleSale,
+  insertSales,
 };
