@@ -3,20 +3,22 @@ const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
 const allProducts = async (_req, res) => {
   const { status, data } = await productsService.getAllProducts();
-  const statusCode = mapStatusHTTP(status);
-
-  return res.status(statusCode).json(data);
+  return res.status(mapStatusHTTP(status)).json(data);
 };
 
 const productById = async (_req, res) => {
   const { id } = _req.params;
   const { status, data } = await productsService.getProductById(id);
-  const statusCode = mapStatusHTTP(status);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
 
-  return res.status(statusCode).json(data);
+const addProduct = async (_req, res) => {
+  const { status, data } = await productsService.insertNewProduct(_req.body);
+  return res.status(mapStatusHTTP(status)).json(data);
 };
 
 module.exports = {
   allProducts,
   productById,
+  addProduct,
 };
