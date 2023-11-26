@@ -13,7 +13,7 @@ const productById = async (_req, res) => {
 };
 
 const addProduct = async (_req, res) => {
-  const { status, data } = await productsService.insertNewProduct(_req.body);
+  const { status, data } = await productsService.insertNewProduct(_req.body.name);
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
