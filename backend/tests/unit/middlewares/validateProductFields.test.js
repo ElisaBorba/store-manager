@@ -6,7 +6,7 @@ const myMiddlewares = require('../../../src/middlewares/validateProductField');
 const VALID_NAME = 'Barry';
 const INVALID_NAME = 'Barr';
 
-describe('validateName Middleware', function () {
+describe('valida Middleware para name', function () {
   it('Deve chamar NEXT se "name" foi válido', function () {
     const req = { body: { name: VALID_NAME } };
     const res = {};

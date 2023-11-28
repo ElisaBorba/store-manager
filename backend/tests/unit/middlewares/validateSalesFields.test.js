@@ -2,48 +2,10 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 const { validateSales, validateSalesQuantity } = require('../../../src/middlewares/validateSalesField');
-
-const VALID_SALES = [
-  {
-    productId: 1,
-    quantity: 1,
-  },
-  {
-    productId: 2,
-    quantity: 5,
-  },
-];
-
-const INVALID_SALES_1 = [
-  {
-    productId: 1,
-    quantity: 1,
-  },
-  {
-    quantity: 5,
-  },
-];
-
-const INVALID_SALES_2 = [
-  {
-    productId: 1,
-    quantity: 1,
-  },
-  {
-    productId: 2,
-  },
-];
-
-const INVALID_SALES_3 = [
-  {
-    productId: 1,
-    quantity: 1,
-  },
-  {
-    productId: 2,
-    quantity: 0,
-  },
-];
+const { VALID_SALES,
+  INVALID_SALES_1,
+  INVALID_SALES_2,
+  INVALID_SALES_3 } = require('../mocks/products.mock');
 
 describe('valida Sales Middleware', function () {
   it('Deve chamar NEXT quando recebe os dados válidos', function () {
@@ -80,7 +42,7 @@ describe('valida Sales Middleware', function () {
     expect(next).to.not.have.been.calledWith();
   });
 
-  it('Deve apresentar um erro quando "quantity" for igual o menor que 1', function () {
+  it('Deve apresentar um erro quando "quantity" for igual ou menor que 1', function () {
     const req = { body: INVALID_SALES_3 };
     const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
     const next = sinon.stub().returns();

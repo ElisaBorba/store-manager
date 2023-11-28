@@ -1,3 +1,45 @@
+const VALID_SALES = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    productId: 2,
+    quantity: 5,
+  },
+];
+
+const INVALID_SALES_1 = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    quantity: 5,
+  },
+];
+
+const INVALID_SALES_2 = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    productId: 2,
+  },
+];
+
+const INVALID_SALES_3 = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    productId: 2,
+    quantity: 0,
+  },
+];
+
 const allProductsFromModel = [
   {
     id: 1,
@@ -57,4 +99,8 @@ module.exports = {
   serviceNotFound,
   serviceConflict,
   serviceInvalidValue,
+  VALID_SALES,
+  INVALID_SALES_1,
+  INVALID_SALES_2,
+  INVALID_SALES_3,
 };
