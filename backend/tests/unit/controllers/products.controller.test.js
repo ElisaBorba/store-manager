@@ -11,6 +11,7 @@ const {
   serviceSuccessProductById,
   getProductByIdFromModel,
   updatedProduct,
+  serviceDeleted,
 } = require('../mocks/products.mock');
 
 describe('Testa requisição para os produtos - CONTROLLER:', function () {
@@ -45,6 +46,22 @@ describe('Testa requisição para os produtos - CONTROLLER:', function () {
     await productsController.updateProduct(req, res);
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(updatedProduct);
+  });
+
+  it('Deleta um produto com sucesso', async function () {
+    sinon.stub(productsService, 'deleteProduct').withArgs(1).resolves(serviceDeleted);
+
+    const req = {
+      params: { id: 1 },
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    await productsController.deleteProduct(req, res);
+    expect(res.status).to.have.been.calledWith(204);
+    expect(res.json).to.not.have.been.calledWithMatch({});
   });
         
   afterEach(function () {

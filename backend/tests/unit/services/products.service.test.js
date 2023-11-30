@@ -9,6 +9,7 @@ const {
   getProductByIdFromModel,
   serviceSuccessAllProducts,
   serviceSuccessProductById,
+  serviceNotFound,
   updatedProduct,
 } = require('../mocks/products.mock');
 
@@ -60,5 +61,14 @@ describe('Testa requisição para os produtos - SERVICE:', function () {
 
     expect(responseService.status).to.equal('SUCCESS');
     expect(responseService.data).to.deep.equal(updatedProduct);
+  });
+
+  it('Deleta um produto que não existe no banco de dados', async function () {
+    sinon.stub(productsModel, 'deleteProduct').resolves({ affectedRows: 0 });
+
+    const responseService = await productsService.deleteProduct(NOT_FOUND_ID);
+
+    expect(responseService.status).to.equal(serviceNotFound.status);
+    expect(responseService.data).to.deep.equal(serviceNotFound.data);
   });
 });

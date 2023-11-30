@@ -5,8 +5,8 @@ const getProducts = async () => {
   return products;
 };
 
-const getSingleProduct = async (productId) => {
-  const [[product]] = await connection.execute('SELECT * FROM products WHERE id = ?', [productId]);
+const getSingleProduct = async (id) => {
+  const [[product]] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
   return product;
 };
 
@@ -20,7 +20,12 @@ const insertProduct = async (productName) => {
 const updateProduct = async (id, productName) => {
   const query = 'UPDATE products SET name = ? WHERE id = ?';
   const [result] = await connection.execute(query, [productName, id]);
- 
+  return result;
+};
+
+const deleteProduct = async (id) => {
+  const query = 'DELETE FROM products WHERE id = ?';
+  const [result] = await connection.execute(query, [id]);
   return result;
 };
 
@@ -29,4 +34,5 @@ module.exports = {
   getSingleProduct,
   insertProduct,
   updateProduct,
+  deleteProduct,
 };

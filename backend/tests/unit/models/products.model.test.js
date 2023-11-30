@@ -46,6 +46,24 @@ describe('Testa requisição para os produtos - MODEL:', function () {
       changedRows: 1,
     });
   });
+
+  it('Deleta um produto com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves(returnFromDB);
+
+    const result = await productsModel.deleteProduct(INPUT_ID);
+
+    sinon.assert.calledWithExactly(connection.execute, 'DELETE FROM products WHERE id = ?', [INPUT_ID]);
+
+    expect(result).to.deep.equal({
+      fieldCount: 0,
+      affectedRows: 1,
+      insertId: 0,
+      info: 'Rows matched: 1  Changed: 1  Warnings: 0',
+      serverStatus: 2,
+      warningStatus: 0,
+      changedRows: 1,
+    });
+  });
   
   afterEach(function () {
     sinon.restore();

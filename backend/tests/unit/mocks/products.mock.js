@@ -78,10 +78,9 @@ const returnFromDB = [
   undefined,
 ];
 
-// const serviceCreated = {
-//   status: 'CREATED',
-//   data: productFromModel,
-// };
+const serviceDeleted = {
+  status: 'NO_CONTENT',
+};
 
 const serviceSuccessAllProducts = {
   status: 'SUCCESS',
@@ -95,28 +94,16 @@ const serviceSuccessProductById = {
 
 const serviceNotFound = {
   status: 'NOT_FOUND',
-  data: { message: 'message' },
-};
-
-const serviceConflict = {
-  status: 'CONFLICT',
-  data: { message: 'message' },
-};
-
-const serviceInvalidValue = {
-  status: 'INVALID_VALUE',
-  data: { message: 'message' },
+  data: { message: 'Product not found' },
 };
 
 module.exports = {
   allProductsFromModel,
   getProductByIdFromModel,
-  // serviceCreated,
+  serviceDeleted,
   serviceSuccessProductById,
   serviceSuccessAllProducts,
   serviceNotFound,
-  serviceConflict,
-  serviceInvalidValue,
   VALID_SALES,
   INVALID_SALES_1,
   INVALID_SALES_2,
