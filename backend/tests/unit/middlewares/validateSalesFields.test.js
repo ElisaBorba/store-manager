@@ -7,7 +7,7 @@ const { VALID_SALES,
   INVALID_SALES_2,
   INVALID_SALES_3 } = require('../mocks/products.mock');
 
-describe('valida Sales Middleware', function () {
+describe('Testa Middlewares para criação de vendas', function () {
   it('Deve chamar NEXT quando recebe os dados válidos', function () {
     const req = { body: VALID_SALES };
     const res = {};

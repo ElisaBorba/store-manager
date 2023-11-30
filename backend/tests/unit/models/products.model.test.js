@@ -10,7 +10,7 @@ const INPUT_NAME = {
   name: 'Martelo do Batman',
 };
   
-describe('Testa os requisição para Produtos - MODEL:', function () {
+describe('Testa requisição para os produtos - MODEL:', function () {
   it('Recuperando todos os produtos com sucesso', async function () {
     sinon.stub(connection, 'execute').resolves([allProductsFromModel]);
 

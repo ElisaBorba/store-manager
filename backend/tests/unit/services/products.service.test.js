@@ -16,7 +16,7 @@ const INPUT_ID = 1;
 const NOT_FOUND_ID = 5;
 const PRODUCT_NAME = 'Martelo do Batman';
   
-describe('Realizando testes de Products - SERVICE:', function () {
+describe('Testa requisição para os produtos - SERVICE:', function () {
   afterEach(function () {
     sinon.restore();
   });
@@ -31,7 +31,7 @@ describe('Realizando testes de Products - SERVICE:', function () {
   });
 
   it('Recuperando um produto pelo seu ID com sucesso', async function () {
-    sinon.stub(productsModel, 'getSingleProduct').withArgs(1).resolves(getProductByIdFromModel);
+    sinon.stub(productsModel, 'getSingleProduct').withArgs(INPUT_ID).resolves(getProductByIdFromModel);
 
     const product = await productsService.getProductById(INPUT_ID);
   
@@ -40,7 +40,7 @@ describe('Realizando testes de Products - SERVICE:', function () {
   });
 
   it('Recuperando um produto pelo seu ID, caso não encontrado', async function () {
-    sinon.stub(productsModel, 'getSingleProduct').withArgs(5).resolves(null);
+    sinon.stub(productsModel, 'getSingleProduct').withArgs(NOT_FOUND_ID).resolves(null);
     
     const product = await productsService.getProductById(NOT_FOUND_ID);
   
