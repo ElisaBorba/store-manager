@@ -20,9 +20,9 @@ const insertNewProduct = async (newProduct) => {
 };
 
 const updateProduct = async (productId, name) => {
-  const product = await productsModel.updateProduct(productId, name);
+  const { affectedRows } = await productsModel.updateProduct(productId, name);
 
-  if (product < 1) {
+  if (affectedRows < 1) {
     return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
   } 
 

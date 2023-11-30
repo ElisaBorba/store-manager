@@ -60,6 +60,24 @@ const getProductByIdFromModel = {
   name: 'Martelo de Thor',
 };
 
+const updatedProduct = {
+  id: 1,
+  name: 'Martelo do Batman',
+};
+
+const returnFromDB = [
+  {
+    fieldCount: 0,
+    affectedRows: 1,
+    insertId: 0,
+    info: 'Rows matched: 1  Changed: 1  Warnings: 0',
+    serverStatus: 2,
+    warningStatus: 0,
+    changedRows: 1,
+  },
+  undefined,
+];
+
 // const serviceCreated = {
 //   status: 'CREATED',
 //   data: productFromModel,
@@ -103,4 +121,6 @@ module.exports = {
   INVALID_SALES_1,
   INVALID_SALES_2,
   INVALID_SALES_3,
+  returnFromDB,
+  updatedProduct,
 };
